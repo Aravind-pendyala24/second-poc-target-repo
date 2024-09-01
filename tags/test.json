@@ -12,10 +12,10 @@
     "as-admin-code": "UYJI"
   },
   "staging": {
-    "ac-disc": "227.43.3.89",
-    "ac-admin": "27.13.43.78",
-    "ar-user": "372.3.93.3",
-    "as-admin": "67.89.8.9"
+    "ac-disc": "1.2.3.4",
+    "ac-admin": "4.5.6.7",
+    "ar-user": "7.8.9.6",
+    "as-admin": "1.4.7.8"
   },
   "staging-codes": {
     "ac-disc-code": "AQWD",
