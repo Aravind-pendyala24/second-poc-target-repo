@@ -1,0 +1,17 @@
+# values.yaml
+
+# Horizontal Pod Autoscaler (HPA) configuration
+hpa:
+  enabled: true
+  minPods: 21           # Minimum number of pods
+  maxPods: 123           # Maximum number of pods
+  targetCPUUtilization: 80  # Target CPU utilization percentage
+
+# Resource requests and limits for the application
+resources:
+  requests:
+    cpu: "512m"          # CPU request (millicores)
+    memory: "512Mi"      # Memory request (MiB)
+  limits:
+    cpu: "9"             # CPU limit (core)
+    memory: "1028Mi"     # Memory limit (MiB)
