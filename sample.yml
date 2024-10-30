@@ -24,3 +24,6 @@ spec:
           requests:
             memory: "128Mi"  # Initial memory request
             cpu: "100m"       # Initial CPU request
+     hpa:
+       minReplicas: 1
+       maxReplicas: 3
