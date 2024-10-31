@@ -1,0 +1,20 @@
+{
+    "first-app": {
+        "us-uat": {
+            "minReplicas": 2,
+            "maxReplicas": 10,
+            "cpuRequests": "500m",
+            "cpuLimits": "1",
+            "memoryRequests": "512Mi",
+            "memoryLimits": "1024Mi"
+        },
+        "us-prod": {
+            "minReplicas": 21,
+            "maxReplicas": 123,
+            "cpuRequests": "512m",
+            "cpuLimits": "9",
+            "memoryRequests": "512Mi",
+            "memoryLimits": "1028Mi"
+        }
+    }
+}

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infrastructure Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { text-align: center; }
+        table { width: 90%; margin: auto; border-collapse: collapse; }
+        th, td { padding: 8px 12px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    <h1>Infrastructure Dashboard</h1>
+    <table id="data-table">
+        <thead>
+            <tr>
+                <th>Application</th>
+                <th>Environment</th>
+                <th>Min Pods</th>
+                <th>Max Pods</th>
+                <th>CPU Requests</th>
+                <th>CPU Limits</th>
+                <th>Memory Requests</th>
+                <th>Memory Limits</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Content will be populated here by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        // Load JSON data and populate table
+        async function loadAndDisplayData() {
+            try {
+                const response = await fetch('infrastructure_details.json');
+                const data = await response.json();
+                const tableBody = document.getElementById('data-table').getElementsByTagName('tbody')[0];
+
+                for (const [app, environments] of Object.entries(data)) {
+                    let isFirst = true;
+                    const numEnvs = Object.keys(environments).length;
+
+                    for (const [env, details] of Object.entries(environments)) {
+                        const row = document.createElement('tr');
+
+                        if (isFirst) {
+                            const appCell = document.createElement('td');
+                            appCell.textContent = app;
+                            appCell.rowSpan = numEnvs;
+                            row.appendChild(appCell);
+                            isFirst = false;
+                        }
+
+                        row.innerHTML += `
+                            <td>${env}</td>
+                            <td>${details.minReplicas}</td>
+                            <td>${details.maxReplicas}</td>
+                            <td>${details.cpuRequests}</td>
+                            <td>${details.cpuLimits}</td>
+                            <td>${details.memoryRequests}</td>
+                            <td>${details.memoryLimits}</td>
+                        `;
+                        
+                        tableBody.appendChild(row);
+                    }
+                }
+            } catch (error) {
+                console.error("Error loading JSON data:", error);
+                alert("Failed to load infrastructure details. Please ensure the JSON file is accessible.");
+            }
+        }
+
+        // Initialize dashboard display
+        loadAndDisplayData();
+    </script>
+</body>
+</html>
+
